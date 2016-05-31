@@ -49,8 +49,11 @@ class DataController extends Controller
 
         // encodes the array into a string in JSON format (JSON_PRETTY_PRINT - uses whitespace in json-string, for human readable)
         $jsondata = json_encode($formdata, JSON_PRETTY_PRINT);
+        $string = file_get_contents("dirdata/formdata.json");
 
-        if(file_put_contents('dirdata/formdata.json', $jsondata)) echo 'Data successfully saved';
+        $storedata = array($string, $jsondata);
+
+        if(file_put_contents('dirdata/formdata.json', $storedata)) echo 'Data successfully saved';
         else echo 'Unable to save data in "dirdata/formdata.txt"';
     }
 
